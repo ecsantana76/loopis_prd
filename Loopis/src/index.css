@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-deep-purple: #3D1E6D;
+  --color-brand-violet: #7C3AED;
+  --color-brand-lilac: #C4A1F5;
+  --color-brand-graphite: #2B2B2E;
+  --color-brand-off-white: #FAFAFC;
+
+  --font-sans: "Inter", sans-serif;
+}
+
+/* Custom utilities that we can use across the app */
+@layer utilities {
+  .text-gradient-loopis {
+    background-image: linear-gradient(135deg, var(--color-brand-deep-purple) 0%, var(--color-brand-violet) 50%, var(--color-brand-lilac) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-loopis {
+    background-image: linear-gradient(135deg, var(--color-brand-deep-purple) 0%, var(--color-brand-violet) 50%, var(--color-brand-lilac) 100%);
+  }
+
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .glassmorphism {
+      background: rgba(43, 43, 46, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-width: 0;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-brand-off-white text-brand-graphite font-sans antialiased dark:bg-brand-graphite dark:text-brand-off-white;
+  }
+}
+
+@layer components {
+  .partner-shell,
+  .partner-content,
+  .partner-content > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .partner-content input,
+  .partner-content select,
+  .partner-content textarea {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .partner-modal-backdrop {
+    overflow: hidden;
+  }
+
+  .partner-modal-panel {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100vw;
+    max-height: 100%;
+    overscroll-behavior: contain;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  .partner-modal-panel > *,
+  .partner-modal-panel input,
+  .partner-modal-panel select,
+  .partner-modal-panel textarea {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .partner-modal-panel {
+      max-height: 100%;
+      padding-bottom: 1.25rem;
+    }
+  }
+}
